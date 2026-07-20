@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD Card Import - Datalogger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/pages/sdcard-import.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1><i class="fas fa-sd-card" style="color:#0891b2;margin-right:10px;"></i>SD Card Import</h1>
+            <p>Upload a binary log file captured when network was unavailable. All data will be parsed and inserted into the database — visible on Graphs, Events, and all other pages.</p>
+        </div>
+
+        <!-- Drop zone -->
+        <div class="drop-zone" id="dropZone">
+            <i class="fas fa-file-upload"></i>
+            <h2>Drop your .bin file here</h2>
+            <p>Supports STM32 binary log format (68-byte sensor packets + 15-byte event packets)</p>
+            <label for="fileInput">
+                <span class="btn-browse"><i class="fas fa-folder-open"></i> Browse File</span>
+            </label>
+            <input type="file" id="fileInput" accept=".bin,.dat,.log">
+        </div>
+
+        <!-- Progress (hidden until upload starts) -->
+        <div class="card" id="progressCard" style="display:none;">
+            <h3><i class="fas fa-cog fa-spin" id="progressIcon"></i> &nbsp;<span id="progressTitle">Parsing…</span></h3>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">Uploading file…</div>
+            <br>
+            <div class="log-box" id="logBox"></div>
+        </div>
+
+        <!-- Summary (hidden until done) -->
+        <div class="card" id="summaryCard" style="display:none;">
+            <h3><i class="fas fa-check-circle" style="color:#22c55e;"></i> &nbsp;Import Complete</h3>
+
+            <div class="summary-grid">
+                <div class="stat-box">
+                    <div class="val" id="statTotal">0</div>
+                    <div class="lbl">Packets parsed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="val" id="statSensor">0</div>
+                    <div class="lbl">Sensor packets</div>
+                </div>
+                <div class="stat-box">
+                    <div class="val" id="statEvents">0</div>
+                    <div class="lbl">Impact events</div>
+                </div>
+                <div class="stat-box">
+                    <div class="val" id="statGps">0</div>
+                    <div class="lbl">GPS points</div>
+                </div>
+                <div class="stat-box">
+                    <div class="val" id="statDropped">0</div>
+                    <div class="lbl">No GPS lock</div>
+                </div>
+            </div>
+
+            <div class="time-range" id="timeRange"></div>
+
+            <div class="action-row">
+                <button class="btn-action btn-primary" onclick="goToGraphs()">
+                    <i class="fas fa-chart-line"></i> View on Graphs
+                </button>
+                <button class="btn-action btn-primary" onclick="goToEvents()">
+                    <i class="fas fa-exclamation-triangle"></i> View Events
+                </button>
+                <button class="btn-action btn-secondary" onclick="resetPage()">
+                    <i class="fas fa-upload"></i> Import Another File
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/pages/sdcard-import.js"></script>
+</body>
+</html>

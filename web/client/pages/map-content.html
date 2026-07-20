@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Events Map — Datalogger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/pages/map-content.css">
+</head>
+<body>
+<div class="map-container">
+
+    <div class="map-page-header">
+        <h2 class="page-title"><i class="fas fa-map-marked-alt"></i> Peak Events Map</h2>
+        <span id="mapStatus" class="map-status-text"></span>
+    </div>
+
+    <!-- Summary badges -->
+    <div class="map-summary-row">
+        <div class="summary-badge total">
+            <span class="badge-num" id="countTotal">—</span>
+            <span class="badge-label">Total Events</span>
+        </div>
+        <div class="summary-badge high">
+            <span class="badge-num" id="countHigh">—</span>
+            <span class="badge-label"><i class="fas fa-circle"></i> HIGH</span>
+        </div>
+        <div class="summary-badge medium">
+            <span class="badge-num" id="countMedium">—</span>
+            <span class="badge-label"><i class="fas fa-circle"></i> MEDIUM</span>
+        </div>
+        <div class="summary-badge low">
+            <span class="badge-num" id="countLow">—</span>
+            <span class="badge-label"><i class="fas fa-circle"></i> LOW</span>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="map-controls">
+        <div class="control-group">
+            <label><i class="fas fa-calendar-alt"></i> Date</label>
+            <input type="date" id="datePicker" list="dateList" onchange="loadMapData()">
+            <datalist id="dateList"></datalist>
+        </div>
+        <div class="control-group">
+            <label><i class="fas fa-filter"></i> Severity</label>
+            <select id="eventTypeFilter" onchange="filterMapMarkers()">
+                <option value="all">All Severities</option>
+                <option value="high">HIGH only</option>
+                <option value="medium">MEDIUM only</option>
+                <option value="low">LOW only</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="centerMap()">
+            <i class="fas fa-expand-arrows-alt"></i> Fit Track
+        </button>
+        <button class="btn btn-secondary" onclick="refreshMap()">
+            <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+    </div>
+
+    <!-- Map + overlays -->
+    <div class="map-outer">
+        <div class="map-wrapper">
+            <div id="mapid"></div>
+        </div>
+
+        <!-- Legend (inside map-outer so it floats over the map) -->
+        <div class="map-legend">
+            <div class="legend-title">Severity</div>
+            <div class="legend-item"><span class="legend-dot high"></span> HIGH (&gt;8g)</div>
+            <div class="legend-item"><span class="legend-dot medium"></span> MEDIUM (4–8g)</div>
+            <div class="legend-item"><span class="legend-dot low"></span> LOW (&lt;4g)</div>
+            <hr style="margin:8px 0;border-color:#e2e8f0;">
+            <div class="legend-item"><span class="legend-line"></span> GPS Track</div>
+        </div>
+
+        <!-- Recent events sidebar (inside map-outer) -->
+        <div class="events-sidebar" id="eventsSidebar">
+            <h3><i class="fas fa-bell"></i> Recent Events</h3>
+            <div id="recentEventsList" class="recent-events-list">
+                <p style="color:#888;font-size:13px;">Loading…</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/pages/map-content.js"></script>
+</body>
+</html>
