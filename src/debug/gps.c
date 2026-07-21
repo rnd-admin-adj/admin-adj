@@ -9,6 +9,37 @@
 #define GPS_PKT_SYNC2   0x55
 #define GPS_PKT_SIZE    14   /* 2 sync + 4 lat + 4 lon + 2 speed + 2 crc */
 
+/* ===== NAYA: Ring buffer + Interrupt-driven UART receive ===== */
+#define RING_BUF_SIZE 256
+static volatile uint8_t ring_buf[RING_BUF_SIZE];
+static volatile uint16_t ring_head = 0;
+static volatile uint16_t ring_tail = 0;
+
+/* ISR — hardware interrupt par turant fire hota hai, kabhi delay nahi hoti */
+void USART6_IRQHandler(void)
+{
+    if (USART6->SR & USART_SR_RXNE)
+    {
+        uint8_t c = USART6->DR;   /* DR read karna RXNE clear kar deta hai */
+
+        uint16_t next = (ring_head + 1) % RING_BUF_SIZE;
+        if (next != ring_tail)      /* buffer full nahi hai toh hi store karo */
+        {
+            ring_buf[ring_head] = c;
+            ring_head = next;
+        }
+    }
+}
+
+static int ring_buf_get(uint8_t *out)
+{
+    if (ring_head == ring_tail)
+        return 0;   /* buffer empty */
+
+    *out = ring_buf[ring_tail];
+    ring_tail = (ring_tail + 1) % RING_BUF_SIZE;
+    return 1;
+}
 /* Extract a specific comma-separated field from an NMEA sentence
  *
  * Parameters:
@@ -127,21 +158,23 @@ void gps_rtc_init(void)
 
 void gps_usart1_init(void)
 {
-    /* GPS now wired to PC6 (TX) / PC7 (RX) -> USART6, AF8 */
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
     RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
 
-    /* PC6, PC7 AF8 */
     GPIOC->MODER &= ~((3U << (6 * 2)) | (3U << (7 * 2)));
     GPIOC->MODER |=  (2U << (6 * 2)) | (2U << (7 * 2));
 
     GPIOC->AFR[0] &= ~((0xF << 24) | (0xF << 28));
     GPIOC->AFR[0] |=  (8U << 24) | (8U << 28);
 
-    /* 9600 baud @ 16 MHz APB2 */
     USART6->BRR = 0x0683;
 
     USART6->CR1 = USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
+
+    /* NAYA: RX interrupt enable karo */
+    USART6->CR1 |= USART_CR1_RXNEIE;
+    NVIC_SetPriority(USART6_IRQn, 0);   /* highest priority - kabhi delay na ho */
+    NVIC_EnableIRQ(USART6_IRQn);
 }
 
 //CRC
@@ -194,10 +227,9 @@ void gps_poll(void)
     static char line[128];
     static uint8_t idx = 0;
     static uint32_t last_print_ms = 0; 
-    if (USART6->SR & USART_SR_RXNE)
+    uint8_t c;
+    while (ring_buf_get(&c))
     {
-        char c = USART6->DR;
-
         if (c == '\n')
         {
             line[idx] = '\0';

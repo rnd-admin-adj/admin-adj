@@ -24,6 +24,19 @@ static void delay_ms(uint32_t ms)
 }
 #define GPS_SOCK   0
 
+static void watchdog_init(void)
+{
+    IWDG->KR = 0x5555;      /* write access enable */
+    IWDG->PR = 4;            /* prescaler /64 -> ~1.6kHz LSI clock */
+    IWDG->RLR = 4000;        /* ~2.5 second timeout */
+    IWDG->KR = 0xAAAA;      /* reload */
+    IWDG->KR = 0xCCCC;      /* start watchdog */
+}
+
+static void watchdog_feed(void)
+{
+    IWDG->KR = 0xAAAA;      /* "main() zinda hai" confirm karo */
+}
 int main(void)
 {
     USART2_Init();
@@ -51,10 +64,11 @@ int main(void)
         usart_debug("W5500 LINK DOWN - check cable\r\n");
 
     usart_debug("\r\n");
-
+    watchdog_init();
     while (1)
     {
         gps_poll();   
         W5500_HTTP_Server_Task();
+        watchdog_feed();
     }
 }

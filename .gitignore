@@ -1,0 +1,12 @@
+# Database
+*.db
+
+# Build output
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# Temporary
+*.tmp

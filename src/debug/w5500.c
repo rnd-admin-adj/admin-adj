@@ -297,6 +297,9 @@ int W5500_Send(uint8_t sock, uint8_t *buf, uint16_t len)
    //MAIN TASK — GPS client 
 int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
 {
+    extern volatile uint32_t ms_ticks;
+    static uint32_t last_reconnect_attempt = 0;
+
     uint8_t status = W5500_GetSocketStatus(sock);
 
     if (status == SOCK_ESTABLISHED)
@@ -310,9 +313,13 @@ int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
     }
     else
     {
-        
-        W5500_TCP_Client_Connect(sock, g_server_ip, g_server_port);
-        return -1;  
+        /* Sirf har 2 second me ek baar reconnect try karo, har GPS sample par nahi */
+        if ((ms_ticks - last_reconnect_attempt) >= 2000)
+        {
+            last_reconnect_attempt = ms_ticks;
+            W5500_TCP_Client_Connect(sock, g_server_ip, g_server_port);
+        }
+        return -1;
     }
 }
 
@@ -326,7 +333,6 @@ void W5500_Set_Last_Data(char *data, uint16_t len)
     memcpy(g_last_gps_data, data, len);
     g_last_gps_data[len] = '\0';
 }
-
 void W5500_HTTP_Server_Task(void)
 {
     if (!http_server_started)
@@ -342,9 +348,6 @@ void W5500_HTTP_Server_Task(void)
     if (status == SOCK_ESTABLISHED)
     {
         uint8_t rxbuf[256];
-
-        for (volatile int i = 0; i < 30000; i++);
-
         W5500_Recv(HTTP_SOCK, rxbuf, sizeof(rxbuf) - 1);
 
         char http_response[400];
@@ -354,21 +357,16 @@ void W5500_HTTP_Server_Task(void)
             "Connection: close\r\n\r\n"
             "<html><body style='font-family:monospace;font-size:20px;'>"
             "<h2>GPS Live Data</h2><pre>%s</pre>"
-            "<meta http-equiv='refresh' content='1'>"
+            "<meta http-equiv='refresh' content='3'>"
             "</body></html>",
             g_last_gps_data);
 
         W5500_Send(HTTP_SOCK, (uint8_t *)http_response, resp_len);
 
-        uint8_t block = 0x08 | (HTTP_SOCK << 5);
-        W5500_Write(0x0001, block, 0x08);   /* DISCON command */
-        W5500_WaitCommand(HTTP_SOCK);
-
-        uint32_t close_timeout = 300000;
-        while (W5500_GetSocketStatus(HTTP_SOCK) != SOCK_CLOSED && --close_timeout);
-
-        if (W5500_GetSocketStatus(HTTP_SOCK) != SOCK_CLOSED)
-            W5500_CloseSocket(HTTP_SOCK);
+        /* NAYA: Busy-wait wala graceful close hataya — seedha abrupt close,
+           lekin thoda delay diya taaki send complete ho jaye pehle */
+        for (volatile int i = 0; i < 20000; i++);
+        W5500_CloseSocket(HTTP_SOCK);
 
         http_server_started = 0;
     }
