@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
+
 
 #define GPS_PKT_SYNC1   0xAA
 #define GPS_PKT_SYNC2   0x55
