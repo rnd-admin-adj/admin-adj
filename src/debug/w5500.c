@@ -11,6 +11,9 @@
 #define HTTP_SOCK   3     
 #define HTTP_PORT   80     
 
+#define COMPANY_NAME   "ADJ Engineering Pvt Ltd"      
+#define PROJECT_NAME   "UABAMS - GPS Tracker" 
+
 //Network Config  
 static uint8_t g_mac[6] = {0x00, 0x08, 0xDC, 0x01, 0x02, 0x03};
 static uint8_t g_ip[4]  = {192, 168, 1, 200};   /* STM32 ka fixed IP - router DHCP  */
@@ -24,13 +27,16 @@ static uint16_t g_server_port = 5000;
 static char g_last_gps_data[160] = "No data yet\r\n";
 static int http_server_started = 0;
 
+//static char g_last_gps_data[160] = "No data yet";
+static uint32_t g_last_data_time = 0;  
+
 static void W5500_Reset(void)
 {
     GPIOB->ODR &= ~(1U << 3);   /* RSTn LOW - PB3 */
     for (volatile int i = 0; i < 100000; i++);   /* >=500us hold */
 
     GPIOB->ODR |= (1U << 3);    /* RSTn HIGH - PB3 */
-    for (volatile int i = 0; i < 200000; i++);   /* chip stabilize hone do */
+    for (volatile int i = 0; i < 200000; i++);   
 }
 
 /* -------------------------------------------------
@@ -313,7 +319,7 @@ int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
     }
     else
     {
-        /* Sirf har 2 second me ek baar reconnect try karo, har GPS sample par nahi */
+        
         if ((ms_ticks - last_reconnect_attempt) >= 2000)
         {
             last_reconnect_attempt = ms_ticks;
@@ -327,14 +333,22 @@ int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
 
 void W5500_Set_Last_Data(char *data, uint16_t len)
 {
+    extern volatile uint32_t ms_ticks;
+
     if (len >= sizeof(g_last_gps_data))
         len = sizeof(g_last_gps_data) - 1;
 
     memcpy(g_last_gps_data, data, len);
     g_last_gps_data[len] = '\0';
+
+    g_last_data_time = ms_ticks;   
 }
+  
+
 void W5500_HTTP_Server_Task(void)
 {
+    extern volatile uint32_t ms_ticks;
+
     if (!http_server_started)
     {
         if (W5500_TCP_Server_Init(HTTP_SOCK, HTTP_PORT) == 0)
@@ -350,21 +364,63 @@ void W5500_HTTP_Server_Task(void)
         uint8_t rxbuf[256];
         W5500_Recv(HTTP_SOCK, rxbuf, sizeof(rxbuf) - 1);
 
-        char http_response[400];
+        
+        char display_buf[200];
+        int j = 0;
+        for (int i = 0; g_last_gps_data[i] != '\0' && j < (int)sizeof(display_buf) - 1; i++)
+        {
+            char ch = g_last_gps_data[i];
+            if (ch == ',')
+                display_buf[j++] = '\n';
+            else if (ch == '\r' || ch == '\n')
+                continue;   
+            else
+                display_buf[j++] = ch;
+        }
+        display_buf[j] = '\0';
+
+        
+        uint32_t data_age = ms_ticks - g_last_data_time;
+        const char *health_text;
+        const char *health_color;
+
+        if (g_last_data_time == 0)
+        {
+            health_text  = "NO DATA RECEIVED YET";
+            health_color = "red";
+        }
+        else if (data_age < 2000)
+        {
+            health_text  = "GPS OK (LIVE)";
+            health_color = "green";
+        }
+        else
+        {
+            health_text  = "GPS NOT RESPONDING";
+            health_color = "red";
+        }
+
+        char http_response[700];
         int resp_len = snprintf(http_response, sizeof(http_response),
             "HTTP/1.1 200 OK\r\n"
             "Content-Type: text/html\r\n"
             "Connection: close\r\n\r\n"
-            "<html><body style='font-family:monospace;font-size:20px;'>"
-            "<h2>GPS Live Data</h2><pre>%s</pre>"
+            "<html><body style='font-family:monospace;font-size:18px;background:#111;color:#eee;padding:20px;'>"
+            "<h2 style='margin-bottom:2px;'>%s</h2>"
+            "<h4 style='margin-top:0;color:#aaa;'>%s</h4>"
+            "<p style='color:%s;font-weight:bold;'>Status: %s</p>"
+            "<hr>"
+            "<pre style='font-size:20px;line-height:1.6;'>%s</pre>"
             "<meta http-equiv='refresh' content='3'>"
             "</body></html>",
-            g_last_gps_data);
+            COMPANY_NAME,
+            PROJECT_NAME,
+            health_color,
+            health_text,
+            display_buf);
 
         W5500_Send(HTTP_SOCK, (uint8_t *)http_response, resp_len);
 
-        /* NAYA: Busy-wait wala graceful close hataya — seedha abrupt close,
-           lekin thoda delay diya taaki send complete ho jaye pehle */
         for (volatile int i = 0; i < 20000; i++);
         W5500_CloseSocket(HTTP_SOCK);
 
