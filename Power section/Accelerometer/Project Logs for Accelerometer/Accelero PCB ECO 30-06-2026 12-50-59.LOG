@@ -1,0 +1,32 @@
+Removed Member From Class: ClassName=MCU Member=J2
+Removed Member From Class: ClassName=Power section Member=J7
+Removed Member From Class: ClassName=MCU Member=R15
+Removed Member From Class: ClassName=Power section Member=R19
+Removed Member From Class: ClassName=Power section Member=R20
+Added Component: Designator=J9(SAMTEC_HMTSW-103-XX-X-S-XXX)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J9-02
+Added Pin To Net: NetName=+24V Pin=J9-03
+Added Member To Class: ClassName=MCU Member=Component D4 SS34
+Added Member To Class: ClassName=Power section Member=Component J1 Header 2
+Added Member To Class: ClassName=Power section Member=Component J3 Header 3
+Added Member To Class: ClassName=MCU Member=Component J4 Header Left
+Added Member To Class: ClassName=MCU Member=Component J5 Header Right
+Added Member To Class: ClassName=MCU Member=Component J6 Header 6
+Added Member To Class: ClassName=Power section Member=Component J9 Header 3
+Added Member To Class: ClassName=Power section Member=Component R14 1k
+Added Member To Class: ClassName=Power section Member=Component R16 1k
+Added Member To Class: ClassName=MCU Member=Component R17 AC1206FR-070RL
+Added Member To Class: ClassName=MCU Member=Component R18 CR0805-JW-331ELF
+Added Member To Class: ClassName=MCU Member=Component R21 0 ohms
+Added Member To Class: ClassName=MCU Member=Component R22 10k
+Added Member To Class: ClassName=MCU Member=Component R23 AC1206FR-070RL
+Added Member To Class: ClassName=MCU Member=Component R25 RC0805FR-0710KL
+Added Member To Class: ClassName=MCU Member=Component R26 RC0805FR-0710KL
+Added Member To Class: ClassName=MCU Member=Component R27 RC0805FR-0710KL
+Added Member To Class: ClassName=MCU Member=Component R29 RC0805FR-0710KL

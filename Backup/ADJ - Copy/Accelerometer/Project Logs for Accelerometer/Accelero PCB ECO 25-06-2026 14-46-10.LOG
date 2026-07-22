@@ -1,0 +1,44 @@
+Add Component: Footprint Not Found GCT_MEM2067-02-180-00-A_REVB
+Added Component: Designator=U1(IC_TPS27S100BPWPR)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "{'manufacturer': u'Texas Instruments'}"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "TPS54383PWPR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin 1-1
+Add Pin To Net: Unknown Pin: Pin 1-2
+Add Pin To Net: Unknown Pin: Pin 1-3
+Add Pin To Net: Unknown Pin: Pin 1-4
+Add Pin To Net: Unknown Pin: Pin 1-5
+Add Pin To Net: Unknown Pin: Pin 1-6
+Add Pin To Net: Unknown Pin: Pin 1-7
+Add Pin To Net: Unknown Pin: Pin 1-8
+Add Pin To Net: Unknown Pin: Pin 1-9
+Add Pin To Net: Unknown Pin: Pin 1-10
+Add Pin To Net: Unknown Pin: Pin 1-11
+Add Pin To Net: Unknown Pin: Pin 1-12
+Added Pin To Net: NetName=+24V Pin=U1-1
+Added Pin To Net: NetName=NetR1_2 Pin=U1-2
+Added Pin To Net: NetName=NetC4_2 Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=NetR3_2 Pin=U1-5
+Added Pin To Net: NetName=GND Pin=U1-6
+Added Pin To Net: NetName=NetC17_1 Pin=U1-7
+Added Pin To Net: NetName=NetC18_1 Pin=U1-8
+Added Pin To Net: NetName=TPS ILIM2 Pin=U1-9
+Added Pin To Net: NetName=TPS Sequance Pin=U1-10
+Added Pin To Net: NetName=TPS BP Pin=U1-11
+Added Pin To Net: NetName=NetC5_1 Pin=U1-12
+Added Pin To Net: NetName=NetR2_1 Pin=U1-13
+Added Pin To Net: NetName=+24V Pin=U1-14
+Added Pin To Net: NetName=GND Pin=U1-15
+Added Pin To Net: NetName=VCAP1 Pin=U2-30
+Add Class Member: Failed to add class member : Component 1 MEM2067-02-180-00-A_REVB
+Added Member To Class: ClassName=MCU Member=Component J1 Header Left
+Added Member To Class: ClassName=MCU Member=Component J2 Header Right
+Added Member To Class: ClassName=MCU Member=Component R14 AC1206FR-070RL
+Added Member To Class: ClassName=MCU Member=Component R15 CR0805-JW-331ELF
+Added Member To Class: ClassName=MCU Member=Component R16 AC1206FR-070RL
+Added Member To Class: ClassName=MCU Member=Component R17 AC1206FR-070RL
+Added Member To Class: ClassName=Power section Member=Component U1 TPS54383PWPR

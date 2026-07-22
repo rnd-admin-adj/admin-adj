@@ -1,0 +1,35 @@
+Removed Member From Class: ClassName=MCU Member=J3
+Change Component Designator: OldDesignator=D4 NewDesignator=D3
+Change Component Designator: OldDesignator=D5 NewDesignator=D4
+Change Component Designator: OldDesignator=J1 NewDesignator=J4
+Change Component Designator: OldDesignator=J2 NewDesignator=J5
+Change Component Designator: OldDesignator=J3 NewDesignator=J1
+Change Component Designator: OldDesignator=J3 NewDesignator=J6
+Change Component Designator: OldDesignator=J4 NewDesignator=J7
+Change Component Designator: OldDesignator=J5 NewDesignator=J8
+Change Component Designator: OldDesignator=J6 NewDesignator=J2
+Change Component Designator: OldDesignator=J7 NewDesignator=J3
+Change Component Designator: OldDesignator=R14 NewDesignator=R17
+Change Component Designator: OldDesignator=R15 NewDesignator=R18
+Change Component Designator: OldDesignator=R16 NewDesignator=R19
+Change Component Designator: OldDesignator=R17 NewDesignator=R20
+Change Component Designator: OldDesignator=R18 NewDesignator=R21
+Change Component Designator: OldDesignator=R19 NewDesignator=R22
+Change Component Designator: OldDesignator=R20 NewDesignator=R23
+Change Component Designator: OldDesignator=R21 NewDesignator=R24
+Change Component Designator: OldDesignator=R22 NewDesignator=R25
+Change Component Designator: OldDesignator=R23 NewDesignator=R26
+Change Component Designator: OldDesignator=R24 NewDesignator=R27
+Change Component Designator: OldDesignator=R25 NewDesignator=R28
+Change Component Designator: OldDesignator=R26 NewDesignator=R29
+Change Component Designator: OldDesignator=R27 NewDesignator=R30
+Change Component Designator: OldDesignator=R28 NewDesignator=R14
+Change Component Designator: OldDesignator=R29 NewDesignator=R15
+Change Component Designator: OldDesignator=R30 NewDesignator=R16
+Added Pin To Net: NetName=TPS ILIM2 Pin=J2-02
+Added Pin To Net: NetName=TPS BP Pin=J2-03
+Added Pin To Net: NetName=TPS Sequance Pin=J3-02
+Added Pin To Net: NetName=TPS BP Pin=J3-03
+Change Net Name : Old Net Name=NetD5_A New Net Name=NetD4_A
+Change Net Name : Old Net Name=NetR18_1 New Net Name=NetR21_1
+Added Member To Class: ClassName=MCU Member=Component J6 Header 6

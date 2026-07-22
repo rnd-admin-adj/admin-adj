@@ -1,0 +1,20 @@
+Added Component: Designator=1(GCT_MEM2067-02-180-00-A_REVB)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "MEM2067-02-180-00-A_REVB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=Net1_1 Pin=1-1
+Added Pin To Net: NetName=Net1_2 Pin=1-2
+Added Pin To Net: NetName=Net1_3 Pin=1-3
+Added Pin To Net: NetName=3V3 Pin=1-4
+Added Pin To Net: NetName=Net1_5 Pin=1-5
+Added Pin To Net: NetName=GND Pin=1-6
+Added Pin To Net: NetName=Net1_7 Pin=1-7
+Added Pin To Net: NetName=Net1_8 Pin=1-8
+Added Pin To Net: NetName=GND Pin=1-9
+Added Pin To Net: NetName=GND Pin=1-10
+Added Pin To Net: NetName=GND Pin=1-11
+Added Pin To Net: NetName=GND Pin=1-12
+Added Member To Class: ClassName=MCU Member=Component 1 MEM2067-02-180-00-A_REVB

@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [Accelero.PcbDoc]
+   Generated File[Accelero.TXT]
+   Generated File[Accelero-RectHoles.TXT]
+   Generated File[Accelero.LDP]
+   Generated File[Accelero.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 21:42:25 On 13-07-2026

@@ -1,0 +1,20 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of PCB Document [Accelero.PcbDoc]
+   Generated File[Accelero.GTO]
+   Generated File[Accelero.GTP]
+   Generated File[Accelero.GTS]
+   Generated File[Accelero.GTL]
+   Generated File[Accelero.GBL]
+   Generated File[Accelero.GBS]
+   Generated File[Accelero.GBP]
+   Generated File[Accelero.GBO]
+   Generated File[Accelero.GM]
+   Generated File[Accelero.EXTREP]
+   Generated File[Accelero.REP]
+
+
+Files Generated   : 11
+Documents Printed : 0
+
+Finished Output Generation At 21:45:46 On 13-07-2026

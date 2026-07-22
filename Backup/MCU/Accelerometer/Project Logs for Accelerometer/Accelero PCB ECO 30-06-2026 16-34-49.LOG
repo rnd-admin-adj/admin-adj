@@ -1,0 +1,62 @@
+Change Component Description : Designator=C17 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C18 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C20 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C25 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C26 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C27 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C30 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C31 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C32 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C33 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C3 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Change Component Description : Designator=C7 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Change Component Description : Designator=C12 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Change Component Description : Designator=C19 Old Description=Capacitor Ceramic C0G 0603 50V 20pF New Description=Capacitor Ceramic C0G 0603 50V 20pF | KEMET C0603C200J5GACTU
+Change Component Description : Designator=C21 Old Description=Capacitor Ceramic C0G 0603 50V 20pF New Description=Capacitor Ceramic C0G 0603 50V 20pF | KEMET C0603C200J5GACTU
+Change Component Description : Designator=C22 Old Description=Capacitor Ceramic C0G 0603 50V 20pF New Description=Capacitor Ceramic C0G 0603 50V 20pF | KEMET C0603C200J5GACTU
+Change Component Description : Designator=C23 Old Description=Capacitor Ceramic C0G 0603 50V 20pF New Description=Capacitor Ceramic C0G 0603 50V 20pF | KEMET C0603C200J5GACTU
+Change Component Description : Designator=R18 Old Description=Res 0805 330R 5% 125mW New Description=Res 0805 330R 5% 125mW | Bourns CR0805-JW-331ELF
+Change Component Description : Designator=R22 Old Description=Res 0805 330R 5% 125mW New Description=Res 0805 330R 5% 125mW | Bourns CR0805-JW-331ELF
+Change Component Description : Designator=R30 Old Description=Res 0805 330R 5% 125mW New Description=Res 0805 330R 5% 125mW | Bourns CR0805-JW-331ELF
+Added Component: Designator=J2(SAMTEC_HMTSW-103-XX-X-S-XXX)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J3(SAMTEC_HMTSW-103-XX-X-S-XXX)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J10(CONN2_0393800102_524X492_MOL)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "393800102"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J11(CONN2_0393800102_524X492_MOL)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "393800102"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J2-01
+Added Pin To Net: NetName=TPS ILIM2 Pin=J2-02
+Added Pin To Net: NetName=TPS BP Pin=J2-03
+Added Pin To Net: NetName=GND Pin=J3-01
+Added Pin To Net: NetName=TPS Sequance Pin=J3-02
+Added Pin To Net: NetName=TPS BP Pin=J3-03
+Added Pin To Net: NetName=+5V Pin=J10-1
+Added Pin To Net: NetName=GND Pin=J10-2
+Added Pin To Net: NetName=3V3 Pin=J11-1
+Added Pin To Net: NetName=GND Pin=J11-2
+Added Member To Class: ClassName=Power section Member=Component J2 Header 3
+Added Member To Class: ClassName=Power section Member=Component J3 Header 3
+Added Member To Class: ClassName=Power section Member=Component J10 393800102
+Added Member To Class: ClassName=Power section Member=Component J11 393800102

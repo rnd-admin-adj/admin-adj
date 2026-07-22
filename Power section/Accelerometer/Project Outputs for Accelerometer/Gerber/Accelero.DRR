@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: Accelero.PcbDoc   13-07-2026  21:42:25
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Accelero.TXT
+ASCII RectHoles File : Accelero-RectHoles.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.3mm (12mil)                                             Round             101       PTH        737.38mm (29.03inch)
+T2      0.33mm (13mil)                                            Round             6         PTH        7.50mm (0.30inch)
+T3      0.8mm (31mil)                                             Rectangle         3         PTH        28.55mm (1.12inch)
+T4      1.02mm (40mil)                                            Round             21        PTH        154.98mm (6.10inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              131
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,48 @@
+Removed Pin From Net: NetName=GND Pin=J3-1
+Removed Pin From Net: NetName=+24V Pin=J3-2
+Removed Pin From Net: NetName=GND Pin=P1-1
+Removed Pin From Net: NetName=GND Pin=P1-1
+Removed Pin From Net: NetName=TPS Sequance Pin=P1-2
+Removed Pin From Net: NetName=TPS Sequance Pin=P1-2
+Removed Pin From Net: NetName=TPS BP Pin=P1-3
+Removed Pin From Net: NetName=TPS BP Pin=P1-3
+Removed Pin From Net: NetName=GND Pin=P2-1
+Removed Pin From Net: NetName=GND Pin=P2-1
+Removed Pin From Net: NetName=TPS ILIM2 Pin=P2-2
+Removed Pin From Net: NetName=TPS ILIM2 Pin=P2-2
+Removed Pin From Net: NetName=TPS BP Pin=P2-3
+Removed Pin From Net: NetName=TPS BP Pin=P2-3
+Removed Member From Class: ClassName=Power section Member=P1
+Removed Member From Class: ClassName=Power section Member=P2
+Change Component Footprint: Designator=J3 Old Footprint=691250910002 New Footprint=TENSILITY_54-00129
+Change component parameters: Designator = "J3" ("J3"); Footprint = "691250910002"; UniqueID = "\KXQYRRJQ" ("\KXQYRRJQ")
+Change component parameters (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/54-00129/Tensility+International+Corp/view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Tensility International Corp"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "54-00129"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search?q=54-00129&ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/54-00129/Tensility+International+Corp/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J6(SAMTEC_HMTSW-103-XX-X-S-XXX)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J7(SAMTEC_HMTSW-103-XX-X-S-XXX)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+24V Pin=J3-A
+Added Pin To Net: NetName=GND Pin=J3-B
+Added Pin To Net: NetName=GND Pin=J3-C
+Added Pin To Net: NetName=GND Pin=J6-01
+Added Pin To Net: NetName=GND Pin=J7-01
+Added Member To Class: ClassName=Power section Member=Component J6 Header 3
+Added Member To Class: ClassName=Power section Member=Component J7 Header 3

@@ -1,0 +1,24 @@
+Removed Member From Class: ClassName=MCU Member=J3
+Removed Member From Class: ClassName=Power section Member=J8
+Removed Member From Class: ClassName=Sheet1 Member=R20
+Added Member To Class: ClassName=MCU Member=Component C21 C0603C104J3RACTU
+Added Member To Class: ClassName=MCU Member=Component C24 100NF
+Added Member To Class: ClassName=MCU Member=Component C25 100NF
+Added Member To Class: ClassName=MCU Member=Component C27 100nF
+Added Member To Class: ClassName=MCU Member=Component C28 100NF
+Added Member To Class: ClassName=MCU Member=Component C29 C0603C104J3RACTU
+Added Member To Class: ClassName=MCU Member=Component C30 2.2UF
+Added Member To Class: ClassName=MCU Member=Component C31 2.2UF
+Added Member To Class: ClassName=MCU Member=Component C32 C0603C104J3RACTU
+Added Member To Class: ClassName=MCU Member=Component C33 C0603C104J3RACTU
+Added Member To Class: ClassName=Power section Member=Component J1 Header 3
+Added Member To Class: ClassName=Power section Member=Component J2 Header 3
+Added Member To Class: ClassName=Power section Member=Component J3 Header 3
+Added Member To Class: ClassName=Power section Member=Component J4 Header 2
+Added Member To Class: ClassName=Power section Member=Component J5 Header 3
+Added Member To Class: ClassName=MCU Member=Component J7 Header 6
+Added Member To Class: ClassName=MCU Member=Component J9 Header 3
+Added Member To Class: ClassName=Sheet1 Member=Component J10 Header 6
+Added Member To Class: ClassName=MCU Member=Component R18 AC1206FR-070RL
+Added Member To Class: ClassName=MCU Member=Component R20 AC1206FR-070RL
+Added Member To Class: ClassName=Sheet1 Member=Component R23 49.9

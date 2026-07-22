@@ -1,0 +1,6 @@
+Remove Pin=J6-02 From Net=TPS ILIM2
+Remove Pin=J6-03 From Net=TPS BP
+Remove Pin=J7-02 From Net=TPS Sequance
+Remove Pin=J7-03 From Net=TPS BP
+Change Component Footprint: Designator=J3 Old Footprint=TENSILITY_54-00129 New Footprint=691250910002
+Change Component Comment: Designator=J3 Old Comment=54-00129 New Comment=Header 2

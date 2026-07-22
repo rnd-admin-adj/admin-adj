@@ -1,0 +1,32 @@
+Change Component Description : Designator=C17 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C18 Old Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% New Description=0603 C 100nF Ceramic Multilayer Capacitor, 25 V, +125degC, X7R Dielectric, +/-5% | KEMET C0603C104J3RACTU
+Change Component Description : Designator=C3 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Change Component Description : Designator=C7 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Change Component Description : Designator=C12 Old Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR New Description=Capacitor,Alum Electrolytic,Cap 100 uF,Tol 20%,Vol-Rtg 25 VDC,SMT,8x10.2,TR | Panasonic Electronic Components EEE-FC1E101P
+Added Member To Class: ClassName=Power section Member=Component C1 10 UF
+Added Member To Class: ClassName=Power section Member=Component C3 EEEFC1E101P
+Added Member To Class: ClassName=Power section Member=Component C5 0.033uF
+Added Member To Class: ClassName=Power section Member=Component C6 470 PF
+Added Member To Class: ClassName=Power section Member=Component C8 0.1UF
+Added Member To Class: ClassName=Power section Member=Component C9 10UF
+Added Member To Class: ClassName=Power section Member=Component C11 470 PF
+Added Member To Class: ClassName=Power section Member=Component C16 10UF
+Added Member To Class: ClassName=Power section Member=Component C17 10NF
+Added Member To Class: ClassName=Power section Member=Component C18 6.8NF
+Added Member To Class: ClassName=Power section Member=Component D1 MBRS330T3G
+Added Member To Class: ClassName=Power section Member=Component J4 Header 3
+Added Member To Class: ClassName=Power section Member=Component J5 Header 2
+Added Member To Class: ClassName=Power section Member=Component J6 Header 3
+Added Member To Class: ClassName=Power section Member=Component R4 10R
+Added Member To Class: ClassName=Power section Member=Component R5 10R
+Added Member To Class: ClassName=Power section Member=Component R6 51R
+Added Member To Class: ClassName=Power section Member=Component R8 20K
+Added Member To Class: ClassName=Power section Member=Component R11 3.83R
+Added Member To Class: ClassName=Power section Member=Component R14 1k
+Added Member To Class: ClassName=Power section Member=Component R15 1k
+Added Member To Class: ClassName=Power section Member=Component R16 1k
+Added Member To Class: ClassName=Power section Member=Component TP4 Ø0.7mm,SMD
+Added Member To Class: ClassName=Power section Member=Component TP6 Ø0.7mm,SMD
+Added Member To Class: ClassName=Power section Member=Component TP7 Ø0.7mm,SMD
+Added Member To Class: ClassName=Power section Member=Component TP8 Ø0.7mm,SMD
+Added Member To Class: ClassName=Power section Member=Component TP9 Ø0.7mm,SMD

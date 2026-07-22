@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=+5V Pin=J10-1
+Removed Pin From Net: NetName=GND Pin=J10-2
+Removed Pin From Net: NetName=3V3 Pin=J11-1
+Removed Pin From Net: NetName=GND Pin=J11-2
+Change Component Footprint: Designator=J10 Old Footprint=CONN2_0393800102_524X492_MOL New Footprint=SAMTEC_HMTSW-103-XX-X-S-XXX
+Change Component Footprint: Designator=J11 Old Footprint=CONN2_0393800102_524X492_MOL New Footprint=SAMTEC_HMTSW-103-XX-X-S-XXX
+Change Component Comment : Designator=J10 Old Comment=393800102 New Comment=Header 3
+Change Component Comment : Designator=J11 Old Comment=393800102 New Comment=Header 3
+Change component parameters: Designator = "J10" ("J10"); Footprint = "CONN2_0393800102_524X492_MOL"; UniqueID = "\XNAYFOPI" ("\XNAYFOPI")
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "J11" ("J11"); Footprint = "CONN2_0393800102_524X492_MOL"; UniqueID = "\NRYBGYTW" ("\NRYBGYTW")
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Samtec"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "HMTSW-103-10-T-S-330"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HMTSW-103-10-T-S-330/Samtec/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J10-02
+Added Pin To Net: NetName=+5V Pin=J10-03
+Added Pin To Net: NetName=GND Pin=J11-02
+Added Pin To Net: NetName=3V3 Pin=J11-03

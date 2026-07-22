@@ -1,0 +1,16 @@
+Removed Member From Class: ClassName=Sheet1 Member=C4
+Removed Member From Class: ClassName=Sheet1 Member=C9
+Removed Member From Class: ClassName=Sheet1 Member=R1
+Removed Member From Class: ClassName=Sheet1 Member=R2
+Removed Member From Class: ClassName=Sheet1 Member=R6
+Removed Member From Class: ClassName=Sheet1 Member=U2
+Add Component: Footprint Not Found SAMTEC_HMTSW-103-XX-X-S-XXX
+Add Pin To Net: Unknown Pin: Pin J2-01
+Add Pin To Net: Unknown Pin: Pin J2-02
+Added Member To Class: ClassName=Sheet1 Member=Component C22 6.8NF
+Added Member To Class: ClassName=Sheet1 Member=Component C27 18PF
+Add Class Member: Failed to add class member : Component J2 Header 3
+Added Member To Class: ClassName=Sheet1 Member=Component R17 82R
+Added Member To Class: ClassName=Sheet1 Member=Component R18 82R
+Added Member To Class: ClassName=Sheet1 Member=Component R22 10k
+Added Member To Class: ClassName=Sheet1 Member=Component U3 W5500
