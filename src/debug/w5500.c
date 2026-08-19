@@ -16,11 +16,11 @@
 
 //Network Config  
 static uint8_t g_mac[6] = {0x00, 0x08, 0xDC, 0x01, 0x02, 0x03};
-static uint8_t g_ip[4]  = {192, 168, 1, 200};   /* STM32 ka fixed IP - router DHCP  */
-static uint8_t g_sn[4]  = {255, 255, 255, 0};   /* Subnet mask */
-static uint8_t g_gw[4]  = {192, 168, 1, 1};     /* Router IP */
+static uint8_t g_ip[4]  = {192, 168, 1, 200};   // STM32  fixed IP - router DHCP  
+static uint8_t g_sn[4]  = {255, 255, 255, 0};   // Subnet mask 
+static uint8_t g_gw[4]  = {192, 168, 1, 1};     // Router IP 
 
-static uint8_t g_server_ip[4] = {192, 168, 1, 104};  /* Server PC  fixed IP */
+static uint8_t g_server_ip[4] = {192, 168, 1, 104};  // Server PC  fixed IP 
 static uint16_t g_server_port = 5000;
 
 
@@ -165,48 +165,12 @@ int W5500_TCP_Server_Init(uint8_t sock, uint16_t port)
 }
 
 
-// int W5500_TCP_Client_Connect(uint8_t sock, uint8_t *server_ip, uint16_t port)
-// {
-//     uint8_t block = 0x08 | (sock << 5);
-
-//     W5500_Write(0x0001, block, 0x04);      // ((0x10)) CONNECT
-//     W5500_WaitCommand(sock);
-
-//     W5500_Write(0x0000, block, 0x01);          // Sn_MR = TCP
-
-//     uint16_t local_port = 50000 + sock;
-//     W5500_Write(0x0004, block, local_port >> 8);
-//     W5500_Write(0x0005, block, local_port & 0xFF);
-
-//     for (int i = 0; i < 4; i++)
-//         W5500_Write(0x000C + i, block, server_ip[i]); // Sn_DIPR
-
-//     W5500_Write(0x0010, block, port >> 8);     // Sn_DPORT
-//     W5500_Write(0x0011, block, port & 0xFF);
-
-//     W5500_Write(0x0001, block, 0x01);          // OPEN
-//     if (W5500_WaitCommand(sock) != 0)
-//         return -1;
-
-//     if (W5500_WaitStatus(sock, SOCK_INIT, 500000) != 0)
-//         return -1;
-
-//     W5500_Write(0x0001, block, 0x04);          // CONNECT
-//     if (W5500_WaitCommand(sock) != 0)
-//         return -1;
-
-//     if (W5500_WaitStatus(sock, SOCK_ESTABLISHED, 1000000) != 0)  ///  2000000
-//         return -1;
-
-//     return 0;   /* connected! */
-// }
-
 int W5500_TCP_Client_Connect(uint8_t sock, uint8_t *server_ip, uint16_t port)
 {
     uint8_t block = 0x08 | (sock << 5);
 
     W5500_Write(0x0001, block, 0x10);      // CLOSE
-    W5500_WaitCommand(sock);               // ye fast hai, register-only wait
+    W5500_WaitCommand(sock);               //  register-only wait
 
     W5500_Write(0x0000, block, 0x01);          // Sn_MR = TCP
 

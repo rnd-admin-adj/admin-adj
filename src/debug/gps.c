@@ -9,23 +9,22 @@
 
 #define GPS_PKT_SYNC1   0xAA
 #define GPS_PKT_SYNC2   0x55
-#define GPS_PKT_SIZE    14   /* 2 sync + 4 lat + 4 lon + 2 speed + 2 crc */
+#define GPS_PKT_SIZE    14   // 2 sync + 4 lat + 4 lon + 2 speed + 2 crc */
 
-/* ===== NAYA: Ring buffer + Interrupt-driven UART receive ===== */
 #define RING_BUF_SIZE 256
 static volatile uint8_t ring_buf[RING_BUF_SIZE];
 static volatile uint16_t ring_head = 0;
 static volatile uint16_t ring_tail = 0;
 
-/* ISR — hardware interrupt par turant fire hota hai, kabhi delay nahi hoti */
+// ISR — hardware interrupt 
 void USART6_IRQHandler(void)
 {
     if (USART6->SR & USART_SR_RXNE)
     {
-        uint8_t c = USART6->DR;   /* DR read karna RXNE clear kar deta hai */
+        uint8_t c = USART6->DR;   // DR read  RXNE clear
 
         uint16_t next = (ring_head + 1) % RING_BUF_SIZE;
-        if (next != ring_tail)      /* buffer full nahi hai toh hi store karo */
+        if (next != ring_tail)      
         {
             ring_buf[ring_head] = c;
             ring_head = next;
@@ -173,9 +172,9 @@ void gps_usart1_init(void)
 
     USART6->CR1 = USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
 
-    /* NAYA: RX interrupt enable karo */
+    //: RX interrupt enable 
     USART6->CR1 |= USART_CR1_RXNEIE;
-    NVIC_SetPriority(USART6_IRQn, 0);   /* highest priority - kabhi delay na ho */
+    NVIC_SetPriority(USART6_IRQn, 0);   // highest priority -not delay  
     NVIC_EnableIRQ(USART6_IRQn);
 }
 

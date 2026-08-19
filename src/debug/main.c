@@ -5,7 +5,7 @@
 #include "w5500.h"
 
 
-#define FS_HZ        200                 // Sampling frequency (Hz) 
+#define FS_HZ        200             // Sampling frequency (Hz) 
 #define WINDOW_MS    100                 
 
 volatile uint32_t ms_ticks = 0;
