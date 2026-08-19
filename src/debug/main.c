@@ -5,6 +5,9 @@
 #include "w5500.h"
 
 
+#define FS_HZ        200   // Sampling frequency (Hz) 
+#define WINDOW_MS    100                 
+
 volatile uint32_t ms_ticks = 0;
 
 void SysTick_Handler(void)
@@ -14,7 +17,7 @@ void SysTick_Handler(void)
 
 void systick_init(void)
 {
-    /* 1ms tick @ 16MHz HSI (adjust if using different SYSCLK) */
+    // 1ms tick @ 16MHz HSI (adjust if using different SYSCLK) 
     SysTick_Config(SystemCoreClock / 1000);
 }
 static void delay_ms(uint32_t ms)
@@ -26,16 +29,16 @@ static void delay_ms(uint32_t ms)
 
 static void watchdog_init(void)
 {
-    IWDG->KR = 0x5555;      /* write access enable */
-    IWDG->PR = 4;            /* prescaler /64 -> ~1.6kHz LSI clock */
-    IWDG->RLR = 4000;        /* ~2.5 second timeout */
-    IWDG->KR = 0xAAAA;      /* reload */
-    IWDG->KR = 0xCCCC;      /* start watchdog */
+    IWDG->KR = 0x5555;      // write access enable 
+    IWDG->PR = 4;            // prescaler /64 -> ~1.6kHz LSI clock 
+    IWDG->RLR = 4000;        // ~2.5 second timeout 
+    IWDG->KR = 0xAAAA;      // reload 
+    IWDG->KR = 0xCCCC;      // start watchdog 
 }
 
 static void watchdog_feed(void)
 {
-    IWDG->KR = 0xAAAA;      /* "main() zinda hai" confirm karo */
+    IWDG->KR = 0xAAAA;      
 }
 int main(void)
 {
@@ -53,7 +56,7 @@ int main(void)
 
     gps_rtc_init();
 
-    /* W5500 init */
+    
     SPI2_Init();   
     int w5500_status = W5500_Init();
     if (w5500_status == 0)

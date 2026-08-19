@@ -7,10 +7,8 @@
 /* Full resolution scale (3.9 mg/LSB) */
 #define ADXL_SCALE 0.0039f
 
-/* =====================================================
-   CHIP SELECT CONTROL
-   ===================================================== */
 
+  // CHIP SELECT CONTROL
 static inline void adxl_cs_select(uint8_t sensor)
 {
     if (sensor == 1)
@@ -27,10 +25,7 @@ static inline void adxl_cs_deselect(uint8_t sensor)
         ADXL2_CS_HIGH();
 }
 
-/* =====================================================
-   LOW LEVEL SPI ACCESS
-   ===================================================== */
-
+// LOW LEVEL SPI ACCESS
 static uint8_t adxl_spi_read(uint8_t sensor, uint8_t reg)
 {
     uint8_t val;
@@ -51,10 +46,8 @@ static void adxl_spi_write(uint8_t sensor, uint8_t reg, uint8_t data)
     adxl_cs_deselect(sensor);
 }
 
-/* =====================================================
-   PUBLIC API
-   ===================================================== */
 
+//   PUBLIC API
 uint8_t adxl345_read_id(uint8_t sensor)
 {
     return adxl_spi_read(sensor, ADXL_DEVID);
@@ -74,22 +67,18 @@ void adxl345_set_odr(uint8_t sensor, uint8_t odr)
 
 void adxl345_init(uint8_t sensor)
 {
-    /* Standby */
+    // Standby 
     adxl_spi_write(sensor, ADXL_POWER_CTL, 0x00);
     delay_ms(10);
 
-    /* Measurement mode */
+    // Measurement mode 
     adxl_spi_write(sensor, ADXL_POWER_CTL, 0x08);
 
-    /* UBMS recommended settings */
+    // UBMS recommended settings 
     adxl345_set_range(sensor, ADXL_RANGE_16G);
     adxl345_set_odr(sensor, 0x0B);   // 200 Hz
 }
-
-/* =====================================================
-   XYZ READ (SPI)
-   ===================================================== */
-
+// XYZ READ (SPI)
 void adxl345_read_xyz_spi(uint8_t sensor,
                           float *x,
                           float *y,
