@@ -2,6 +2,7 @@ import socket
 import threading
 import sqlite3
 import struct
+import re
 from datetime import datetime
 
 HOST = "0.0.0.0"
@@ -14,6 +15,7 @@ DEVICE_MAP = {
     "192.168.1.203": "ACCEL-2",
     "192.168.1.204": "ACCEL-3",
     "192.168.1.205": "ACCEL-4",
+    "192.168.1.211": "ODOMETER-1",   # Railway axle box encoder odometer
 }
 
 GPS_SYNC1 = 0xAA
@@ -50,7 +52,10 @@ def init_db():
             raw_data TEXT NOT NULL,
             lat REAL, lon REAL, speed_kmph REAL,
             x REAL, y REAL, z REAL,
-            crc_ok INTEGER
+            crc_ok INTEGER,
+            enc_count INTEGER,
+            enc_km INTEGER, enc_m INTEGER, enc_mm INTEGER,
+            enc_speed_ms REAL, enc_speed_kmh REAL
         )
     """)
     conn.commit()
@@ -59,14 +64,18 @@ def init_db():
 
 def save_to_db(timestamp, device_name, ip, raw_data,
                 lat=None, lon=None, speed=None,
-                x=None, y=None, z=None, crc_ok=None):
+                x=None, y=None, z=None, crc_ok=None,
+                enc_count=None, enc_km=None, enc_m=None, enc_mm=None,
+                enc_speed_ms=None, enc_speed_kmh=None):
     with db_lock:
         conn = sqlite3.connect(DB_FILE)
         conn.execute(
             """INSERT INTO sensor_data
-               (timestamp, device_name, ip_address, raw_data, lat, lon, speed_kmph, x, y, z, crc_ok)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-            (timestamp, device_name, ip, raw_data, lat, lon, speed, x, y, z, crc_ok)
+               (timestamp, device_name, ip_address, raw_data, lat, lon, speed_kmph, x, y, z, crc_ok,
+                enc_count, enc_km, enc_m, enc_mm, enc_speed_ms, enc_speed_kmh)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (timestamp, device_name, ip, raw_data, lat, lon, speed, x, y, z, crc_ok,
+             enc_count, enc_km, enc_m, enc_mm, enc_speed_ms, enc_speed_kmh)
         )
         conn.commit()
         conn.close()
@@ -84,6 +93,34 @@ def parse_accel_packet(pkt: bytes):
     payload = pkt[2:14]
     crc_ok = (crc16_ccitt(payload) == crc_recv)
     return x_raw / 1_000_000, y_raw / 1_000_000, z_raw / 1_000_000, crc_ok
+
+
+def parse_odometer_line(line: str):
+    """
+    Parses a line like:
+    ENCODER,COUNT=5524,KM=0,METER=342,MM=247,SPEED_MS=0.079,SPEED_KMH=0.29
+    Returns a dict of the parsed fields, or None if the line doesn't match.
+    """
+    if not line.startswith("ENCODER,"):
+        return None
+
+    fields = {}
+    for part in line.strip().split(","):
+        if "=" in part:
+            key, val = part.split("=", 1)
+            fields[key.strip()] = val.strip()
+
+    try:
+        return {
+            "count":       int(fields["COUNT"]),
+            "km":          int(fields["KM"]),
+            "meter":       int(fields["METER"]),
+            "mm":          int(fields["MM"]),
+            "speed_ms":    float(fields["SPEED_MS"]),
+            "speed_kmh":   float(fields["SPEED_KMH"]),
+        }
+    except (KeyError, ValueError):
+        return None
 
 
 def handle_binary_stream(conn, ip, device_name, sync1, sync2, pkt_size, parser_func, kind):
@@ -132,6 +169,46 @@ def handle_binary_stream(conn, ip, device_name, sync1, sync2, pkt_size, parser_f
                 save_to_db(ts, device_name, ip, pkt.hex(), x=x, y=y, z=z, crc_ok=int(crc_ok))
 
 
+def handle_odometer_stream(conn, ip, device_name):
+    """
+    Odometer sends plain ASCII CSV lines terminated by \\r\\n (not binary
+    packets), so this reads line-by-line instead of using sync-byte framing.
+    """
+    buf = ""
+    while True:
+        try:
+            data = conn.recv(1024)
+        except ConnectionResetError:
+            break
+        if not data:
+            break
+
+        buf += data.decode("ascii", errors="ignore")
+
+        while "\n" in buf:
+            line, buf = buf.split("\n", 1)
+            line = line.strip()
+            if not line:
+                continue
+
+            ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+            parsed = parse_odometer_line(line)
+
+            if parsed:
+                print(f"[{ts}] {device_name} ({ip}) | "
+                      f"Count:{parsed['count']} "
+                      f"Dist:{parsed['km']}KM {parsed['meter']}M {parsed['mm']}MM "
+                      f"Speed:{parsed['speed_ms']:.3f}m/s {parsed['speed_kmh']:.2f}km/h")
+                save_to_db(ts, device_name, ip, line,
+                           enc_count=parsed["count"],
+                           enc_km=parsed["km"], enc_m=parsed["meter"], enc_mm=parsed["mm"],
+                           enc_speed_ms=parsed["speed_ms"], enc_speed_kmh=parsed["speed_kmh"],
+                           crc_ok=1)
+            else:
+                print(f"[{ts}] {device_name} ({ip}) | *** UNPARSEABLE LINE *** raw={line}")
+                save_to_db(ts, device_name, ip, line, crc_ok=0)
+
+
 def handle_client(conn, addr):
     ip = addr[0]
     device_name = DEVICE_MAP.get(ip, f"UNKNOWN({ip})")
@@ -141,6 +218,8 @@ def handle_client(conn, addr):
         handle_binary_stream(conn, ip, device_name, GPS_SYNC1, GPS_SYNC2, GPS_PKT_SIZE, parse_gps_packet, "gps")
     elif device_name.startswith("ACCEL"):
         handle_binary_stream(conn, ip, device_name, ACCEL_SYNC1, ACCEL_SYNC2, ACCEL_PKT_SIZE, parse_accel_packet, "accel")
+    elif device_name.startswith("ODOMETER"):
+        handle_odometer_stream(conn, ip, device_name)
     else:
         print(f"[{device_name}] unknown device type, ignoring")
 

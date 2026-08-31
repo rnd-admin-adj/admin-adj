@@ -1,6 +1,11 @@
 #include "stm32f4xx.h"
 #include "w5500.h"
 #include "spi2.h"
+#include <string.h>
+#include <stdio.h>
+
+#include "FreeRTOS.h"
+#include "task.h"
 
 /* Socket states */
 #define SOCK_ESTABLISHED  0x17
@@ -27,7 +32,6 @@ static uint16_t g_server_port = 5000;
 static char g_last_gps_data[160] = "No data yet\r\n";
 static int http_server_started = 0;
 
-//static char g_last_gps_data[160] = "No data yet";
 static uint32_t g_last_data_time = 0;  
 
 static void W5500_Reset(void)
@@ -297,11 +301,14 @@ int W5500_Send(uint8_t sock, uint8_t *buf, uint16_t len)
 }
 
 
-//MAIN TASK — GPS client 
+/* -------------------------------------------------
+   MAIN TASK — GPS client
+   Uses xTaskGetTickCount() for the reconnect-retry timer, since
+   configTICK_RATE_HZ = 1000 makes 1 tick = 1 ms.
+------------------------------------------------- */
 int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
 {
-    extern volatile uint32_t ms_ticks;
-    static uint32_t last_reconnect_attempt = 0;
+    static TickType_t last_reconnect_attempt = 0;
 
     uint8_t status = W5500_GetSocketStatus(sock);
 
@@ -316,10 +323,9 @@ int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
     }
     else
     {
-        
-        if ((ms_ticks - last_reconnect_attempt) >= 2000)
+        if ((xTaskGetTickCount() - last_reconnect_attempt) >= pdMS_TO_TICKS(2000))
         {
-            last_reconnect_attempt = ms_ticks;
+            last_reconnect_attempt = xTaskGetTickCount();
             W5500_TCP_Client_Connect(sock, g_server_ip, g_server_port);
         }
         return -1;
@@ -330,22 +336,18 @@ int W5500_GPS_Client_Task(uint8_t sock, char *gps_line, uint16_t len)
 
 void W5500_Set_Last_Data(char *data, uint16_t len)
 {
-    extern volatile uint32_t ms_ticks;
-
     if (len >= sizeof(g_last_gps_data))
         len = sizeof(g_last_gps_data) - 1;
 
     memcpy(g_last_gps_data, data, len);
     g_last_gps_data[len] = '\0';
 
-    g_last_data_time = ms_ticks;   
+    g_last_data_time = xTaskGetTickCount();
 }
   
 
 void W5500_HTTP_Server_Task(void)
 {
-    extern volatile uint32_t ms_ticks;
-
     if (!http_server_started)
     {
         if (W5500_TCP_Server_Init(HTTP_SOCK, HTTP_PORT) == 0)
@@ -377,7 +379,7 @@ void W5500_HTTP_Server_Task(void)
         display_buf[j] = '\0';
 
         
-        uint32_t data_age = ms_ticks - g_last_data_time;
+        uint32_t data_age = xTaskGetTickCount() - g_last_data_time;
         const char *health_text;
         const char *health_color;
 
@@ -386,7 +388,7 @@ void W5500_HTTP_Server_Task(void)
             health_text  = "NO DATA RECEIVED YET";
             health_color = "red";
         }
-        else if (data_age < 2000)
+        else if (data_age < pdMS_TO_TICKS(2000))
         {
             health_text  = "GPS OK (LIVE)";
             health_color = "green";

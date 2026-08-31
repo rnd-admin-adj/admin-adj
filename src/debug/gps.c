@@ -6,6 +6,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 
 #define GPS_PKT_SYNC1   0xAA
 #define GPS_PKT_SYNC2   0x55
@@ -174,7 +177,7 @@ void gps_usart1_init(void)
 
     //: RX interrupt enable 
     USART6->CR1 |= USART_CR1_RXNEIE;
-    NVIC_SetPriority(USART6_IRQn, 0);   // highest priority -not delay  
+    NVIC_SetPriority(USART6_IRQn, 5);   // must be numerically >= configMAX_SYSCALL_INTERRUPT_PRIORITY if this ISR ever calls FreeRTOS APIs
     NVIC_EnableIRQ(USART6_IRQn);
 }
 
@@ -221,13 +224,15 @@ static uint16_t build_gps_packet(uint8_t *out, int32_t lat_i, int32_t lon_i, uin
 }
 /* =========================================================
    GPS POLLING (call continuously)
+   Uses xTaskGetTickCount() to throttle the sample rate, since
+   configTICK_RATE_HZ = 1000 makes 1 tick = 1 ms.
    ========================================================= */
 
 void gps_poll(void)
 {
     static char line[128];
     static uint8_t idx = 0;
-    static uint32_t last_print_ms = 0; 
+    static TickType_t last_print_tick = 0;
     uint8_t c;
     while (ring_buf_get(&c))
     {
@@ -255,9 +260,9 @@ void gps_poll(void)
                 if (status[0] == 'A' && lat[0] && lon[0])
                 {
                     char tx_buf[128];
-                    if ((ms_ticks - last_print_ms) >= GPS_SAMPLE_INTERVAL_MS)
+                    if ((xTaskGetTickCount() - last_print_tick) >= pdMS_TO_TICKS(GPS_SAMPLE_INTERVAL_MS))
                     {
-                        last_print_ms = ms_ticks;
+                        last_print_tick = xTaskGetTickCount();
 
                     double dlat = nmea_lat_to_decimal(lat);
                     double dlon = nmea_lon_to_decimal(lon);
@@ -357,4 +362,3 @@ void gps_configure(void)
     gps_uart_send(ubx_disable_vtg, sizeof(ubx_disable_vtg));
     gps_uart_send(ubx_rate_5hz, sizeof(ubx_rate_5hz));
 }
-
