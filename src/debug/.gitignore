@@ -1,0 +1,4 @@
+echo "*.o
+*.elf
+*.bin
+src/debug/freertos/**/*.o" > "Encoder tsting code/encoder/.gitignore"

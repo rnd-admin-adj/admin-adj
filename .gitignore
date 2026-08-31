@@ -1,0 +1,5 @@
+.gitignore << 'EOF'
+*.o
+*.elf
+*.bin
+EOF
